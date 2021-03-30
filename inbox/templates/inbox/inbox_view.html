@@ -1,0 +1,20 @@
+{% extends 'inbox/loginView.html' %}
+{% block content%}
+{%for mail in mails%}
+    <article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+        <a class="mr-2" href="#">{{ mail.senderName }}</a>
+        <small class="text-muted">{{ mail.senderEmail }}</small>
+        </div>
+        Subject : <a class="article-content" href="#">{{ mail.subject }}</a>
+         <p class="article-content">Mail : {{ mail.message }}</p>
+    </div>
+    </article>
+{% endfor %}
+{% endblock content%}
+
+
+
+
+    
