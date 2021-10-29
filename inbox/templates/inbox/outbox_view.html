@@ -4,8 +4,7 @@
     <article class="media content-section">
     <div class="media-body">
         <div class="article-metadata">
-        <a class="mr-2" href="#">{{ mail.senderName }}</a>
-        <small class="text-muted">{{ mail.senderEmail }}</small>
+        <a class="mr-2" href="#">{{ mail.receiverName }}</a>
         </div>
         Subject : <a class="article-content" href="#">{{ mail.subject }}</a>
          <p class="article-content">Message : {{ mail.message }}</p>
@@ -13,8 +12,3 @@
     </article>
 {% endfor %}
 {% endblock content%}
-
-
-
-
-    

@@ -3,7 +3,6 @@ from .forms import UserRegisterForm,UserLoginForm
 from databaselayer.connection import dbConnection
 from databaselayer import queries
 from django.contrib import messages
-from django.core.mail import send_mail
 from django.utils import timezone
 
 
@@ -24,7 +23,9 @@ def registerUser(request):
             form.saveData(data)
             username = form.cleaned_data.get('username')
             myCollection = dbConnection('Pmail' , 'inbox')
-            queries.createInboxQuery(myCollection,{'username' : username , 'email' : form.cleaned_data.get('email'),"messages" : []})
+            queries.createCollectionQuery(myCollection,{'username' : username , 'email' : form.cleaned_data.get('email'),"messages" : []})
+            myCollection = dbConnection('Pmail' , 'outbox')
+            queries.createCollectionQuery(myCollection,{'username' : username , 'email' : form.cleaned_data.get('email'),"messages" : []})
             messages.success(request,f'Account created for {username}!')
             return redirect('pmail-home')
     else:   
@@ -41,7 +42,7 @@ def login(request):
             data = queries.findWithProjectionQuery(myCollection , {'username' : username} , {'username' : 1 , 'password' : 1})
             try:
                 username == data['username'] and password == data['password']
-                queries.loginQuery(myCollection,username,status=True)
+                queries.loginQuery(username,status=True)
                 messages.success(request , f'Successfully Logged In as {username}')
                 return redirect('pmail-login-home')
             except:
@@ -53,6 +54,6 @@ def login(request):
 
 def logout(request):
     myCollection = dbConnection('Pmail' , 'user_data')
-    queries.logoutQuery(myCollection, status = False)
+    queries.logoutQuery(status = False)
     messages.success(request , f'Successfully Logged Out')
     return redirect('pmail-home')

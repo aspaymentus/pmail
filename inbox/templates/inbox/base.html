@@ -52,6 +52,7 @@
           {% endif %}
           {% block content %}{% endblock %}
         </div>
+        {% comment %} 
         <div class="col-md-4">
           <div class="content-section">
             <h3>Options</h3>
@@ -59,17 +60,30 @@
               <ul class="list-group">
                 <li class="list-group-item list-group-item-light"><a class="nav-item nav-link" href="#">What's New</a></li>
                 <li class="list-group-item list-group-item-light"><a class="nav-item nav-link" href="#">Contact Us</a></li>
-                {% comment %} <li class="list-group-item list-group-item-light">Calendars</li>
+                <li class="list-group-item list-group-item-light">Calendars</li>
                 <li class="list-group-item list-group-item-light">etc</li> {% endcomment %}
-              </ul>
+              {% comment %} </ul>
             </p>
           </div>
         </div>
-      </div>
+      </div>  {% endcomment %}
     </main>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	{% comment %} <script>
+  window.watsonAssistantChatOptions = {
+      integrationID: "93971cd4-e75f-48bf-a0bd-435fb1bf8ed5", // The ID of this integration.
+      region: "eu-gb", // The region your integration is hosted in.
+      serviceInstanceID: "2a436024-2ba6-4638-b579-a194b59b7a90", // The ID of your service instance.
+      onLoad: function(instance) { instance.render(); }
+    };
+  setTimeout(function(){
+    const t=document.createElement('script');
+    t.src="https://web-chat.global.assistant.watson.appdomain.cloud/loadWatsonAssistantChat.js";
+    document.head.appendChild(t);
+  });
+</script>  {% endcomment %}
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
